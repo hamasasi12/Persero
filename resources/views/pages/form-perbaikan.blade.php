@@ -19,7 +19,7 @@
                                 <div class="row mb-3">
                                     <label for="nomor_barang" class="col-sm-2 col-form-label">No Permintaan</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="nomor_permintaan" name="no_permintaan" />
+                                        <input type="text" class="form-control" id="nomor_permintaan" name="no_permintaan" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -37,7 +37,7 @@
                                 <div class="row mb-3">
                                     <label for="jumlah_produk" class="col-sm-2 col-form-label">Pic Permintaan</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="pic_permintaan" name="pic_permintaan" />
+                                        <input type="text" class="form-control" id="pic_permintaan" name="pic_permintaan" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">

@@ -18,31 +18,31 @@
                                 <div class="row mb-3">
                                     <label for="nomor_barang" class="col-sm-2 col-form-label">Kode Asset</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="kode_asset" name="kode_asset"/>
+                                        <input type="text" class="form-control" id="kode_asset" name="kode_asset"/>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="nomor_barang" class="col-sm-2 col-form-label">Keterangan</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="keterangan" name="keterangan"/>
+                                        <input type="text" class="form-control" id="keterangan" name="keterangan"/>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="nomor_barang" class="col-sm-2 col-form-label">Status</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="status" name="status"/>
+                                        <input type="text" class="form-control" id="status" name="status"/>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="nomor_barang" class="col-sm-2 col-form-label">PIC</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="pic" name="pic"/>
+                                        <input type="text" class="form-control" id="pic" name="pic"/>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="nomor_barang" class="col-sm-2 col-form-label">Tanggal Permintaan</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="tanggal" name="tanggal"/>
+                                        <input type="date" class="form-control" id="tanggal" name="tanggal"/>
                                     </div>
                                 </div>
                                 <div class="d-md-flex justify-content-md-end mt-3">
@@ -57,3 +57,4 @@
         </section>
     </main>
 @endsection
+

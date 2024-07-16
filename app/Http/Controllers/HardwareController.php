@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\TambahDataHardware;
 use Illuminate\Http\Request;
+use Carbon\Carbon;  
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Response;
+
 
 class HardwareController extends Controller
 {
@@ -12,7 +16,7 @@ class HardwareController extends Controller
      */
     public function index()
     {
-        $hardware = TambahDataHardware::all();
+        $hardware = TambahDataHardware::latest()->get();
         return view('pages.hardware', compact('hardware'));
     }
 
@@ -38,7 +42,7 @@ class HardwareController extends Controller
             'ram' =>'required',
             'hdd' =>'required',
             'ip' =>'required',
-            'user' =>'required',
+            'user' =>'required',  
             'unit' =>'required',
             'lokasi' =>'required',
             'status' =>'required',
@@ -84,5 +88,61 @@ class HardwareController extends Controller
         $hardware = TambahDataHardware::findOrFail($id);
         $hardware->delete();
         return back()->with('info', 'Data telah dihapus');
+    }
+
+    public function printToPDF()
+    {
+        Carbon::setLocale('id');
+        $requests = TambahDataHardware::latest()->get();
+
+        $data = [
+            'requests' => $requests
+        ];
+
+        $pdf = PDF::loadView('pdf.hardware', $data)
+                  ->setPaper('A4', 'landscape'); // Set landscape orientation for better table fit
+
+        return $pdf->download('Data_Hardware_Persero.pdf');
+    }
+
+    public function exportToExcel()
+    {
+    // Fetch requests with technician information
+    $requests = TambahDataHardware::latest()->get();
+
+    $filename = "hardware_" . date('Ymd') . ".csv";
+
+    $handle = fopen($filename, 'w+');
+    fputcsv($handle, ['no_inventaris', 'tahun', 'jenis', 'merek', 'proc', 'ram', 'hdd', 'ip', 'user', 'unit', 'lokasi', 'status', 'windows','office','garansi','created_at','updated_at']);
+
+    foreach ($requests as $row) {
+        fputcsv($handle, [
+            $row->no_inventaris,
+            $row->tahun,
+            $row->jenis,
+            $row->merek,
+            $row->proc,
+            $row->ram,
+            $row->hdd,
+            $row->ip,
+            $row->user,
+            $row->unit,
+            $row->lokasi,
+            $row->status,
+            $row->windows,
+            $row->office,
+            $row->garansi,
+            $row->created_at,
+            $row->updated_at,
+        ]);
+    }
+
+    fclose($handle);
+
+    $headers = [
+        'Content-Type' => 'text/csv',
+    ];
+
+    return Response::download($filename, $filename, $headers);
     }
 }

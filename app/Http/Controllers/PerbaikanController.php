@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Perbaikan;
 use Illuminate\Http\Request;
+use Carbon\Carbon;  
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Response;
 
 class PerbaikanController extends Controller
 {
@@ -74,5 +77,50 @@ class PerbaikanController extends Controller
         $perbaikan = Perbaikan::findOrFail($id);
         $perbaikan->delete();
         return back()->with('info', 'Data telah dihapus');
+    }
+
+    public function printToPDF()
+    {   
+        Carbon::setLocale('id');
+        $requests = Perbaikan::latest()->get();
+
+    $data = [
+        'requests' => $requests
+    ];
+
+    $pdf = PDF::loadView('pdf.perbaikan', $data);
+
+    return $pdf->download('Data_Perbaikan_Persero.pdf');
+    }
+
+    public function exportToExcel()
+    {
+    // Fetch requests with technician information
+    $requests = Perbaikan::latest()->get();
+
+    $filename = "Perbaikan_" . date('Ymd') . ".csv";
+
+    $handle = fopen($filename, 'w+');
+    fputcsv($handle, ['no_permintaan', 'pic_permintaan','departemen','tanggal_permintaan','deskripsi_permintaan','Created At', 'Updated At']);
+
+    foreach ($requests as $row) {
+        fputcsv($handle, [
+            $row->no_permintaan,
+            $row->pic_permintaan,
+            $row->departemen,
+            $row->tanggal_permintaan,
+            $row->deskripsi_permintaan,
+            $row->created_at,
+            $row->updated_at,
+        ]);
+    }
+
+    fclose($handle);
+
+    $headers = [
+        'Content-Type' => 'text/csv',
+    ];
+
+    return Response::download($filename, $filename, $headers);
     }
 }

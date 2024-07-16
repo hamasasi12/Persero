@@ -7,6 +7,9 @@ use App\Models\RequestUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Request as HttpRequest;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;  
+use Illuminate\Support\Facades\Response;
 
 class RequestUserController extends Controller
 {
@@ -147,6 +150,54 @@ class RequestUserController extends Controller
             return redirect()->back()->with('success', 'Data berhasil dipindahkan ke tabel dikerjakan.');
         }
         return redirect()->back()->with('error', 'Data tidak ditemukan.');
+    }
+
+    public function printToPDF()
+    {   
+        Carbon::setLocale('id');
+        $requests = RequestUser::latest()->get();
+
+    $data = [
+        'requests' => $requests
+    ];
+
+    $pdf = PDF::loadView('pdf.all_requests', $data);
+
+    return $pdf->download('Data_Request_Users_Persero.pdf');
+    }
+
+    public function exportToExcel()
+    {
+    // Fetch requests with technician information
+    $requests = RequestUser::with('technician')->latest()->get();
+
+    $filename = "requests_" . date('Ymd') . ".csv";
+
+    $handle = fopen($filename, 'w+');
+    fputcsv($handle, ['NUP', 'Nama', 'Divisi', 'No HP', 'Kategori Request', 'Deskripsi Request', 'Alasan Request', 'Teknisi', 'Created At', 'Updated At']);
+
+    foreach ($requests as $row) {
+        fputcsv($handle, [
+            $row->nup,
+            $row->nama,
+            $row->divisi,
+            $row->no_hp,
+            $row->kategori_req,
+            $row->deskripsi_req,
+            $row->alasan_req,
+            $row->technician ? $row->technician->name : 'N/A', // Fetch technician name
+            $row->created_at,
+            $row->updated_at,
+        ]);
+    }
+
+    fclose($handle);
+
+    $headers = [
+        'Content-Type' => 'text/csv',
+    ];
+
+    return Response::download($filename, $filename, $headers);
     }
     
 }

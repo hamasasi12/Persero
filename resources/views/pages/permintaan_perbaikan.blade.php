@@ -17,6 +17,10 @@
                         <div class="card-body">
                             <h5 class="card-title">Permintaan Perbaikan</h5>
                             <div class="d-flex justify-content-between mb-3">
+                                <div class="d-flex align-items-center gap-2 mb-3">
+                                    <a href="{{ route('perbaikan.print') }}" class="btn btn-rounded btn-danger">Print to PDF</a>
+                                    <a href="{{ route('export.perbaikan') }}" class="btn btn-primary">Export to Excel</a>
+                                </div>
                                 <a href="#" type="button" class="btn btn-rounded "><i class="bi bi-funnel"
                                     style="margin-right: 5px"></i></a>
                                     <a href="{{ route('Perbaikan.create') }}" type="button" class="btn btn-rounded btn-primary">
@@ -47,7 +51,8 @@
                                             <td>{{ $item->pic_permintaan }}</td>
                                             <td>{{ $item->tanggal_permintaan }}</td>
                                             <td>
-                                                <a href="{{ route('edit-data-perbaikan', $item->id) }}">edit</a>
+                                                <a href="{{ route('edit-data-perbaikan', $item->id) }}"><i class="bi bi-pencil-square"></i></a>
+                                                <a href="{{ route('delete-data-perbaikan', $item->id) }}" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="bi bi-trash3-fill" style="color: red"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

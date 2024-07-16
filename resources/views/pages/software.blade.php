@@ -28,7 +28,10 @@
                     <div class="card-body">
                         <h5 class="card-title">Data Aset Software</h5>
                         <div class="d-flex justify-content-between mb-3">
-                            <a href="#" type="button" class="btn btn-rounded btn-danger">Print</a>
+                            <div class="d-flex align-items-center gap-2 mb-3">
+                                <a href="{{ route('software.print') }}" class="btn btn-rounded btn-danger">Print to PDF</a>
+                                <a href="{{ route('export.software') }}" class="btn btn-primary">Export to Excel</a>
+                            </div>
                             <a href="{{ route('TambahDataSoftware.create') }}" type="button" class="btn btn-rounded btn-success">
                                 <i class="bi bi-plus-square" style="margin-right: 5px"></i>Tambah Data
                             </a>

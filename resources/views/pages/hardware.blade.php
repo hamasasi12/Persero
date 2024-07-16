@@ -86,9 +86,12 @@
                         <div class="card-body">
                             <h5 class="card-title">Data Aset Hardware</h5>
                             <div class="d-flex justify-content-between mb-3">
-                                <a href="#" type="button" class="btn btn-rounded btn-danger">Print</a>
+                                <div class="d-flex align-items-center gap-2 mb-3">
+                                    <a href="{{ route('hardware.print') }}" class="btn btn-rounded btn-danger">Print to PDF</a>
+                                    <a href="{{ route('export.hardware') }}" class="btn btn-primary">Export to Excel</a>
+                                </div>
                                 <a href="{{ route('TambahDataHardware.create') }}" type="button" class="btn btn-rounded btn-success">
-                                    <i class="bi bi-plus-square" style="margin-right: 5px"></i>Tambah Data
+                                    <i class="bi bi-plus-square" style="margin-right: 5px">Tambah Data</i>
                                 </a>
                             </div>
     
@@ -138,7 +141,7 @@
                                             <td>
                                                 <a href="{{ route('edit-data-hardware',$item->id) }}"><i class="bi bi-pencil-square"></i></a>
                                                 {{-- <i class="bi bi-pencil-square"></i> --}}
-                                                <a href="{{ route('delete-data-hardware', $item->id) }}">delete</a>
+                                                <a href="{{ route('delete-data-hardware', $item->id) }}" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="bi bi-trash3-fill" style="color: red"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach

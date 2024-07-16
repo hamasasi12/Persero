@@ -17,6 +17,10 @@
                         <div class="card-body">
                             <h5 class="card-title">Tindaklanjut Perbaikan</h5>
                             <div class="d-flex justify-content-between mb-3">
+                                <div class="d-flex align-items-center gap-2 mb-3">
+                                    <a href="{{ route('tindaklanjut.print') }}" class="btn btn-rounded btn-danger">Print to PDF</a>
+                                    <a href="{{ route('export.tindaklanjut') }}" class="btn btn-primary">Export to Excel</a>
+                                </div>
                                 <a href="#" type="button" class="btn btn-rounded "><i class="bi bi-funnel"
                                     style="margin-right: 5px"></i></a>
                                     <a href="{{ route('Tindaklanjut.create') }}" type="button" class="btn btn-rounded btn-primary">
@@ -46,8 +50,8 @@
                                             <td>{{ $item->pic }}</td>
                                             <td>{{ $item->tanggal }}</td>
                                             <td>
-                                                <i class="bi bi-eye"></i>
-                                                <i class="bi bi-pencil-square"></i>
+                                                <a href="{{ route('edit-data-tindaklanjut', $item->id) }}"><i class="bi bi-pencil-square"></i></a>
+                                                <a href="{{ route('delete-data-tindaklanjut', $item->id) }}" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="bi bi-trash3-fill" style="color: red"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach

@@ -26,9 +26,11 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Data Request</h5>
-                        <a href="{{ route('generate-pdf') }}" type="button" class="btn btn-rounded btn-danger mb-3">Print</a>
-
+                        <h5 class="card-title">Data Request User</h5>
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <a href="{{ route('request-user.print') }}" class="btn btn-rounded btn-danger">Print to PDF</a>
+                            <a href="{{ route('export.requests') }}" class="btn btn-primary">Export to Excel</a>
+                        </div>
                         <!-- Table with stripped rows -->
                         <div class="table-responsive-lg">
                             <table class="table datatable table-striped table-bordered ">
@@ -74,7 +76,8 @@
                                     <td>
                                         <div style="line-height: 0.5">
                                             <p class="font-weight-bold"><i class="bi bi-person-fill"></i> {{ $item->nama }}</p>
-                                            <p style="color: blue">{{ $item->nup }}</p>
+                                            {{-- <p style="color: blue">{{ $item->nup }}</p> --}}
+                                            <p style="color:rgb(0, 135, 225)"><i class="bi bi-file-earmark-person-fill"></i> {{ $item->nup }}</p>
                                             <p style="color: rgb(255, 81, 0)"><i class="bi bi-telephone-fill"></i> {{ $item->no_hp }}</p>
                                             <p>{{ $item->divisi }}</p>
                                         </div>
@@ -191,3 +194,4 @@
         });
     });
 </script>
+

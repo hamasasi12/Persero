@@ -31,13 +31,13 @@
                 </a>  
               </li>
               <li>
-                <a href="{{ route('history_pekerjaan') }}">
-                  <i class="bi bi-clock-history"></i><span>History Pekerjaan</span>
+                <a href="{{ route('PekerjaanSelesai.index') }}">
+                  <i class="bi bi-circle"></i><span>Pekerjaan Selesai</span>
                 </a>
               </li>
               <li>
-                <a href="{{ route('PekerjaanSelesai.index') }}">
-                  <i class="bi bi-circle"></i><span>Pekerjaan Selesai</span>
+                <a href="{{ route('history.indexx') }}">
+                  <i class="bi bi-clock-history"></i><span>History Pekerjaan</span>
                 </a>
               </li>
             </ul>

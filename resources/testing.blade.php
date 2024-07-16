@@ -10,8 +10,8 @@
   {{-- header start --}}
   <header>
     <div class="header-container">
-      <p>header</p>
     </div>
+    <p>header</p>
   </header>
   {{-- header end --}}
 

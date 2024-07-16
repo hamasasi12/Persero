@@ -7,6 +7,12 @@ use App\Models\selesai;
 use Illuminate\Http\Request;
 use App\Models\RequestUser;
 use App\Models\User;
+use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\History;
+use Illuminate\Support\Facades\Response;
+
+
 
 class DataDikerjakanController extends Controller
 {
@@ -95,5 +101,66 @@ class DataDikerjakanController extends Controller
             return redirect()->back()->with('success', 'Data berhasil dipindahkan ke tabel Selesai.');
         }
         return redirect()->back()->with('error', 'Data tidak ditemukan.');
+    }
+
+    public function printToPDF()
+    {   
+        Carbon::setLocale('id');
+        $requests = Dikerjakan::latest()->get();
+
+    $data = [
+        'requests' => $requests
+    ];
+
+    $pdf = PDF::loadView('pdf.data_dikerjakan', $data);
+
+    return $pdf->download('data_dikerjakan_Persero.pdf');
+    }
+
+    public function storeHistory(Request $request)
+    {
+        // Example of storing history entry
+        $history = new History();
+        $history->name = $request->name;
+        $history->category = $request->category;
+        $history->technician = $request->technician;
+        // Set other attributes as needed
+        $history->save();
+
+        return redirect()->back()->with('success', 'History entry created successfully.');
+    }
+
+    public function exportToExcel()
+    {
+    // Fetch requests with technician information
+    $requests = Dikerjakan::with('technician')->latest()->get();
+
+    $filename = "dikerjakan_" . date('Ymd') . ".csv";
+
+    $handle = fopen($filename, 'w+');
+    fputcsv($handle, ['NUP', 'Nama', 'Divisi', 'No HP', 'Kategori Request', 'Deskripsi Request', 'Alasan Request', 'Teknisi', 'Created At', 'Updated At']);
+
+    foreach ($requests as $row) {
+        fputcsv($handle, [
+            $row->nup,
+            $row->nama,
+            $row->divisi,
+            $row->no_hp,
+            $row->kategori_req,
+            $row->deskripsi_req,
+            $row->alasan_req,
+            $row->technician ? $row->technician->name : 'N/A', // Fetch technician name
+            $row->created_at,
+            $row->updated_at,
+        ]);
+    }
+
+    fclose($handle);
+
+    $headers = [
+        'Content-Type' => 'text/csv',
+    ];
+
+    return Response::download($filename, $filename, $headers);
     }
 }

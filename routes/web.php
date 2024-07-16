@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataDikerjakanController;
 use App\Http\Controllers\HardwareController;
 use App\Http\Controllers\PerbaikanController;
@@ -10,6 +11,9 @@ use App\Http\Controllers\SoftwareController;
 use App\Http\Controllers\TindakLanjutController;
 use App\Models\TambahDataHardware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PDFController;
+use App\Http\Controllers\HistoryController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -69,6 +73,7 @@ Route::middleware('auth')->group(function () {
 // Menggunakan RequestUserController untuk rute request-user
     Route::get('/request-user', [RequestUserController::class, 'create'])->name('request-user');
     Route::post('/request-user', [RequestUserController::class, 'store'])->name('request-user-simpan');
+    
 
     Route::get('/permintaan-masuk', [RequestUserController::class, 'index'])->name('permintaan-masuk');
     Route::resource('TambahDataHardware', HardwareController::class);
@@ -110,5 +115,35 @@ Route::middleware('auth')->group(function () {
     Route::resource('PekerjaanSelesai', SelesaiController::class);
 
     Route::get('/generate-pdf', [DataDikerjakanController::class, 'moveToSelesai'])->name('generate-pdf');
+
+    Route::get('/generate-pdf', [PDFController::class, 'generatePDF']);
+
+    Route::get('/request-user-print', [RequestUserController::class, 'printToPDF'])->name('request-user.print');
+    Route::get('/data-dikerjakan-print', [DataDikerjakanController::class, 'printToPDF'])->name('data-dikerjakan.print');
+    Route::get('/data-selesai-print', [SelesaiController::class, 'printToPDF'])->name('data-selesai.print');
+    Route::get('/history', [HistoryController::class, 'index'])->name('history.indexx');
+    Route::get('export-requests', [RequestUserController::class, 'exportToExcel'])->name('export.requests');
+    Route::get('export-dikerjakan', [DataDikerjakanController::class, 'exportToExcel'])->name('export.dikerjakan');
+    Route::get('export-selesai', [SelesaiController::class, 'exportToExcel'])->name('export.selesai');
+
+    Route::get('/hardware-print', [HardwareController::class, 'printToPDF'])->name('hardware.print');
+    Route::get('export-hardware', [HardwareController::class, 'exportToExcel'])->name('export.hardware');
+
+    Route::get('/software-print', [SoftwareController::class, 'printToPDF'])->name('software.print');
+    Route::get('export-software', [SoftwareController::class, 'exportToExcel'])->name('export.software');
+
+    Route::get('delete-data-perbaikan/{id}',[PerbaikanController::class, 'destroy'])->name('delete-data-perbaikan');
+
+    Route::get('edit-data-tindaklanjut/{id}/edit', [TindakLanjutController::class, 'edit'])->name('edit-data-tindaklanjut');
+    Route::post('update-data-tindaklanjut/{id}',[TindakLanjutController::class, 'update'])->name('update-data-tindaklanjut');
+    Route::get('delete-data-tindaklanjut/{id}',[TindakLanjutController::class, 'destroy'])->name('delete-data-tindaklanjut');
+
+    Route::get('/perbaikan-print', [PerbaikanController::class, 'printToPDF'])->name('perbaikan.print');
+    Route::get('export-perbaikan', [PerbaikanController::class, 'exportToExcel'])->name('export.perbaikan');
+
+    Route::get('export-tindaklanjut', [TindakLanjutController::class, 'exportToExcel'])->name('export.tindaklanjut');
+    Route::get('/tindaklanjut-print', [TindakLanjutController::class, 'printToPDF'])->name('tindaklanjut.print');
+
+    // Route::get('/dashboard/data', [DashboardController::class, 'getData']);
 
 require __DIR__.'/auth.php';

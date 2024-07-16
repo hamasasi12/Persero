@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\TambahDataSoftware;
 use Illuminate\Http\Request;
+use Carbon\Carbon;  
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Response;
 
 class SoftwareController extends Controller
 {
@@ -77,5 +80,51 @@ class SoftwareController extends Controller
         $software = TambahDataSoftware::findOrFail($id);
         $software->delete();
         return back()->with('info', 'Data telah dihapus');
+    }
+
+    public function printToPDF()
+    {   
+        Carbon::setLocale('id');
+        $requests = TambahDataSoftware::latest()->get();
+
+    $data = [
+        'requests' => $requests
+    ];
+
+    $pdf = PDF::loadView('pdf.software', $data);
+
+    return $pdf->download('Data_Software_Persero.pdf');
+    }
+
+    public function exportToExcel()
+    {
+    // Fetch requests with technician information
+    $requests = TambahDataSoftware::latest()->get();
+
+    $filename = "software_" . date('Ymd') . ".csv";
+
+    $handle = fopen($filename, 'w+');
+    fputcsv($handle, ['no_inventaris', 'tahun','jenis_aplikasi','nama_aplikasi','pengguna','divisi','Created At', 'Updated At']);
+
+    foreach ($requests as $row) {
+        fputcsv($handle, [
+            $row->no_inventaris,
+            $row->tahun,
+            $row->jenis_aplikasi,
+            $row->nama_aplikasi,
+            $row->pengguna,
+            $row->divisi,
+            $row->created_at,
+            $row->updated_at,
+        ]);
+    }
+
+    fclose($handle);
+
+    $headers = [
+        'Content-Type' => 'text/csv',
+    ];
+
+    return Response::download($filename, $filename, $headers);
     }
 }

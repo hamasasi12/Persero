@@ -27,8 +27,10 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Table Selesai</h5>
-                        <a href="#" type="button" class="btn btn-rounded btn-danger mb-3">Print</a>
-
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <a href="{{ route('data-selesai.print') }}" class="btn btn-rounded btn-danger">Print to PDF</a>
+                            <a href="{{ route('export.selesai') }}" class="btn btn-primary">Export to Excel</a>
+                        </div>
                         <!-- Table with stripped rows -->
                         <div class="table-responsive-lg">
                             <table class="table datatable table-striped table-bordered ">
@@ -49,7 +51,7 @@
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>
-                                        {{ $item->created_at_formatted }}<br/><a href="#" type="button" class="btn btn-rounded btn-danger mb-2">Belum Ditangani <br>Selama :{{ $item->created_at ? $item->created_at->diffForHumans() : 'Unknown' }}</a>
+                                        {{ $item->created_at_formatted }}
                                         <p> <strong>Created : </strong>{{ $item->created_at }}</p>
                                     </td>
                                     <td>
