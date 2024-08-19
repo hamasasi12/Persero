@@ -51,7 +51,7 @@ class HardwareController extends Controller
             'garansi' =>'required',
         ]);
             TambahDataHardware::create($request->all());
-            return redirect()->route('TambahDataHardware.index')->with('success', 'Post created successfully.');
+            return redirect()->route('TambahDataHardware.index')->with('success', 'Data Berhasil Ditambahkan.');
     }
 
     /**
@@ -87,7 +87,7 @@ class HardwareController extends Controller
     {
         $hardware = TambahDataHardware::findOrFail($id);
         $hardware->delete();
-        return back()->with('info', 'Data telah dihapus');
+        return back()->with('success', 'Data telah dihapus');
     }
 
     public function printToPDF()

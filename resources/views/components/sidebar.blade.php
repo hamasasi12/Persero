@@ -82,8 +82,7 @@
               </li>
             </ul>
           </li>
-          <!-- ======= End Maintenance ======= -->
-  
+          <!-- ======= End Maintenance ======= -->  
         </ul>
       </li>
   
@@ -95,10 +94,85 @@
                   <span>Tambah User</span>
               </a>
           @endif
-      </li>
-      <!-- ======= End Tambah User ======= -->
-  
+      </li>\
+      <!-- ======= End Tambah User ======= -->  
     </ul>
   </div>
 </aside>
 <!-- End Sidebar-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <header></header>
+  <main></main>
+  <footer></footer>
+
+  <script defer>
+    const word = prompt("ini adalah primt yang diminta");
+    const word1 = prompt("ini adalah primt yang diminta");
+    const word2 = prompt("ini adalah primt yang diminta");
+
+    let testing = [word,word1,word2];
+
+    function testing (arrays) {
+
+    }
+    testing(testing);
+
+
+  </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <header>
+    <div class="header container">
+      <p>hamas akif sanie</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="main-container">
+      <p>hamas akif sanie</p>
+    </div>
+  </main>
+  <footer>
+    <div class="footer-container">
+      <p>ini adalah container</p>
+    </div>
+  </footer>
+
+  <script defer>
+    const word = prompt("masukkan sebuah kata");
+    const word2 = prompt("masukkan sebuah kata");
+    const word3 = prompt("masukkan sebuah kata");
+
+    let arrays = [word,word2,word3];
+
+    function masukan (arrays) {
+      let testing = arrays;
+      
+    }
+
+    const testing = (arrays) => {
+      
+    }
+    masukan(arrays);
+  </script>
+</body>
+</html>

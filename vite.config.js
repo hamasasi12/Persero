@@ -12,3 +12,12 @@ export default defineConfig({
         }),
     ],
 });
+
+const Hamas = document.querySelectorAll('#Hamas');
+let testing = [hamas, akif, sanie];
+
+const dicoding = function (arrays) {
+    const asdasd = arrays.split('').reverse().join('');
+    return asdasd;
+};
+

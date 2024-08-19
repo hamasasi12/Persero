@@ -1,5 +1,7 @@
 @extends('layouts.dashboard-layout')
+
 @section('content')
+
 @section('main')
 
 <main id="main" class="main">
@@ -77,3 +79,32 @@
 </main>
 
 @endsection
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <p>Hamas Akif Sanie</p>
+        </div>
+    </header>
+
+
+    <main class="main-container">
+        <p></p>
+    </main>
+
+
+    <footer>
+        <div class="footer-container">
+
+        </div>
+    </footer>
+</body>
+</html>

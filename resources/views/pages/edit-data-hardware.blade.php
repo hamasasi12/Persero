@@ -4,7 +4,7 @@
         
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Tambah Aset Hardware</h1>
+            <h1>Edit Aset Hardware</h1>
         </div>
         <!-- End Page Title -->
         
@@ -38,73 +38,73 @@
                                 <div class="row mb-3">
                                     <label for="jumlah_produk" class="col-sm-2 col-form-label">Merek</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="merek" name="merek" value="{{ $hardware->merek }}" />
+                                        <input type="text" class="form-control" id="merek" name="merek" value="{{ $hardware->merek }}" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="jumlah_produk" class="col-sm-2 col-form-label">Proc</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="Proc" name="proc" value="{{ $hardware->proc }}"/>
+                                        <input type="text" class="form-control" id="Proc" name="proc" value="{{ $hardware->proc }}"/>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="jumlah_produk" class="col-sm-2 col-form-label">RAM</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="ram" name="ram" value="{{ $hardware->ram }}"/>
+                                        <input type="text" class="form-control" id="ram" name="ram" value="{{ $hardware->ram }}"/>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="jumlah_produk" class="col-sm-2 col-form-label">HDD</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="hdd" name="hdd" value="{{ $hardware->hdd }}" />
+                                        <input type="text" class="form-control" id="hdd" name="hdd" value="{{ $hardware->hdd }}" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="jumlah_produk" class="col-sm-2 col-form-label">IP</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="ip" name="ip" value="{{ $hardware->ip }}" />
+                                        <input type="text" class="form-control" id="ip" name="ip" value="{{ $hardware->ip }}" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="jumlah_produk" class="col-sm-2 col-form-label">User</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="user" name="user" value="{{ $hardware->user }}" />
+                                        <input type="text" class="form-control" id="user" name="user" value="{{ $hardware->user }}" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="jumlah_produk" class="col-sm-2 col-form-label">Unit</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="unit" name="unit" value="{{ $hardware->unit }}" />
+                                        <input type="text" class="form-control" id="unit" name="unit" value="{{ $hardware->unit }}" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="jumlah_produk" class="col-sm-2 col-form-label">Lokasi</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="lokasi" name="lokasi" value="{{ $hardware->lokasi }}" />
+                                        <input type="text" class="form-control" id="lokasi" name="lokasi" value="{{ $hardware->lokasi }}" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="jumlah_produk" class="col-sm-2 col-form-label">Status</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="status" name="status" value="{{ $hardware->status }}" />
+                                        <input type="text" class="form-control" id="status" name="status" value="{{ $hardware->status }}" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="jumlah_produk" class="col-sm-2 col-form-label">Windows</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="windows" name="windows" value="{{ $hardware->windows }}" />
+                                        <input type="text" class="form-control" id="windows" name="windows" value="{{ $hardware->windows }}" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="jumlah_produk" class="col-sm-2 col-form-label">Office</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="office" name="office" value="{{ $hardware->office }}" />
+                                        <input type="text" class="form-control" id="office" name="office" value="{{ $hardware->office }}" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="jumlah_produk" class="col-sm-2 col-form-label">Garansi</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="garansi" name="garansi" value="{{ $hardware->garansi }}" />
+                                        <input type="text" class="form-control" id="garansi" name="garansi" value="{{ $hardware->garansi }}" />
                                     </div>
                                 </div>
                                 <div class="d-md-flex justify-content-md-end mt-3">

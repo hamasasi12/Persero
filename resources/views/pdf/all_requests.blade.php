@@ -47,7 +47,7 @@
                 <th>Teknisi</th>
                 <th>User</th>
                 <th>File</th>
-                {{-- <th>Action</th> --}}
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -91,12 +91,6 @@
                         </div>
                     @endif
                 </td>
-                {{-- <td>
-                    <form action="{{ route('requests.dikerjakan', $request->id) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-success">Kerjakan!</button>
-                    </form>
-                </td> --}}
             </tr>
             @endforeach
         </tbody>
